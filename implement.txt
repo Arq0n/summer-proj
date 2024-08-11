@@ -1,0 +1,11 @@
+Maybe a good idea to include a slider for how many dishes they want to be able to see when putting in their choices
+
+Suggestion based on cuisines -> user will select the cuisines that they would like to have a dish from or are interested in and then the program will
+                                return 3 popular dishes as suggestions
+
+Suggestion based on ingredients -> user will select ingredients that they would like to use in a dish and the program will return 3 popular using the 
+                                ingredients as suggestions, the dish does not have to include all the ingredients
+
+GUI
+
+Computer vision
