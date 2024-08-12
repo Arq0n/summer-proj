@@ -8,7 +8,7 @@ class Recipe:
         self._meal_type = json_data['mealType']
 
     def __str__(self):
-        return ' '.join(self._cuisine) + ' cuisine: ' + self._name + ' for ' + \
+        return ' '.join(self._cuisine) + ' acuisine: ' + self._name + ' for ' + \
             ' '.join(self._meal_type)
     
     def get_health_labels(self) -> list[str]:
