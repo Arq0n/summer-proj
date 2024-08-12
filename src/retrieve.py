@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def connect(text, cuisine, meal_type, diet, allergies=None):
@@ -15,6 +16,10 @@ def connect(text, cuisine, meal_type, diet, allergies=None):
             'Accept-Language' : 'en'}
 
     response = requests.get(url, params=params, headers=headers)
-    print(response.content)
+    data = response.content.decode(encoding='utf-8')
+    j = json.loads(data)
+    with open('data.json', 'w') as outfile:
+        json.dump(j, outfile)
 
-connect('chicken', 'american', 'dinner', 'balanced')
+if __name__ == "__main__":
+    connect('chicken', 'american', 'dinner', 'balanced')
