@@ -7,20 +7,17 @@ CUISINES = ['american', 'asian', 'british', 'caribbean', 'central europe', 'chin
             'eastern europe', 'french', 'greek', 'indian', 'italian', 'japanese', 'korean',
               'kosher', 'mediterranean', 'mexican', 'middle eastern', 'nordic', 
               'south american','south east asian', 'world']
-MEAL_TYPE = ['breakfast', 'brunch', 'lunch' , 'dinner', 'snack', 'teatime']
 DIET_LABELS = ['balanced', 'high-fiber', 'high-protein', 'low-carb', 'low-fat', 'low-sodium']
+MEAL_TYPE = ['breakfast', 'brunch', 'lunch' , 'dinner', 'snack', 'teatime']
 
 load_dotenv()
 EDAMAM_API_KEY = os.getenv('EDAMAM_API_KEY')
 
-def connect(text, cuisine, meal_type, diet, allergies=None):
-    if cuisine not in CUISINES:
-        raise ValueError('Not a valid cuisine type')
-    if meal_type not in MEAL_TYPE:
-        raise ValueError('Not a valid meal time')
-    if diet not in DIET_LABELS:
-        raise ValueError('Not a valid diet label')
-    
+def connect(text: str, meal_type: str, cuisine: str = 'world', diet: str = 'balanced', allergies: str = None) -> str:
+    """
+    Method to connect to edamam api to access meal information
+    Returns the string recieved from the api
+    """
     url = 'https://api.edamam.com/api/recipes/v2'
     params = {
         'type': 'any',
@@ -33,10 +30,11 @@ def connect(text, cuisine, meal_type, diet, allergies=None):
     headers = {'Accept-Language' : 'en'}
 
     response = requests.get(url, params=params, headers=headers)
-    data = response.content.decode(encoding='utf-8')
+    return response.content.decode(encoding='utf-8')
+    
+
+if __name__ == "__main__":
+    data = connect('chicken', 'american', 'dinner', 'balanced')
     j = json.loads(data)
     with open('data.json', 'w') as outfile:
         json.dump(j, outfile)
-
-if __name__ == "__main__":
-    connect('chicken', 'american', 'dinner', 'balanced')
