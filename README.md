@@ -1,6 +1,6 @@
 # summer-proj
 
-## Set up virtual environment
+## Set up virtual environment (macOS)
 python3 -m venv env\
 source env/bin/activate
 
